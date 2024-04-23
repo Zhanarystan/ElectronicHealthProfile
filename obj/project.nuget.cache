@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "bS0tZIwpvQqWWrEyfonSL2xB4i04lsa3kgc+o2s1k+Gqds5ZH9gtlzX+O4X5gSuMq0oPFgCzL9JXB7jgJOlukw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\mukht\\source\\repos\\ElectronicHealthProfile\\ElectronicHealthProfile.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mukht\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\mukht\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\mukht\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
+    "C:\\Users\\mukht\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
+    "C:\\Users\\mukht\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
+    "C:\\Users\\mukht\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}

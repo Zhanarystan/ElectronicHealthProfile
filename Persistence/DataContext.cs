@@ -11,6 +11,7 @@ public class DataContext : IdentityDbContext<AppUser>
     public DbSet<Consultation> Consultations { get; set; }
     public DbSet<Institution> Institutions { get; set; }
     public DbSet<LabResult> LabResults { get; set; }
+    public DbSet<LabResultSet> LabResultSet { get; set; }
     public DbSet<MedicalConcern> MedicalConcerns { get; set; }
     public DbSet<MedicalStaff> MedicalStaffs { get; set; }
     public DbSet<Medicament> Medicaments { get; set; }
@@ -18,6 +19,7 @@ public class DataContext : IdentityDbContext<AppUser>
     public DbSet<Student> Students { get; set; }
     public DbSet<VitalSign> VitalSigns { get; set; }
     public DbSet<AppUser> Users { get; set; }
+    public DbSet<SickNote> SickNotes { get; set; }
 
 
     public DataContext(DbContextOptions options) : base(options)

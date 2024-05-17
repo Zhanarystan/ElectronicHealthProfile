@@ -15,11 +15,10 @@ public class ConsultationRepository : IConsultationRepository
         _context = context;
     }
 
-    public async Task<Consultation> CreateConsultation(Consultation consultation)
+    public async Task<bool> CreateConsultation(Consultation consultation)
     {
         _context.Consultations.Add(consultation);
-        await _context.SaveChangesAsync();
-        return consultation;
+        return await _context.SaveChangesAsync() > 0;
     }
 
     public async Task<Consultation> GetConsultation(Guid id)
@@ -38,10 +37,9 @@ public class ConsultationRepository : IConsultationRepository
         return await _context.SaveChangesAsync();
     }
 
-    public async Task<Consultation> UpdateConsultation(Consultation consultation)
+    public async Task<bool> UpdateConsultation(Consultation consultation)
     {
         _context.Consultations.Update(consultation);
-        await _context.SaveChangesAsync();
-        return consultation;
+        return await _context.SaveChangesAsync() > 0;    
     }
 }

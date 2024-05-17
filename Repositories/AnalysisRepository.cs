@@ -14,11 +14,10 @@ public class AnalysisRepository : IAnalysisRepository
         _context = context;
     }
 
-    public async Task<Analysis> CreateAnalysis(Analysis analysis)
+    public async Task<bool> CreateAnalysis(Analysis analysis)
     {
         _context.Analysis.Add(analysis);
-        await _context.SaveChangesAsync();
-        return analysis;
+        return await _context.SaveChangesAsync() > 0; 
     }
 
     public async Task<Analysis> GetAnalysis(Guid id)
@@ -37,10 +36,9 @@ public class AnalysisRepository : IAnalysisRepository
         return await _context.SaveChangesAsync();
     }
 
-    public async Task<Analysis> UpdateAnalysis(Analysis analysis)
+    public async Task<bool> UpdateAnalysis(Analysis analysis)
     {
         _context.Analysis.Update(analysis);
-        await _context.SaveChangesAsync();
-        return analysis;
+        return await _context.SaveChangesAsync() > 0;
     }
 }

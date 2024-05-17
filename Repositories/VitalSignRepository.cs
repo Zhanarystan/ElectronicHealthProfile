@@ -14,11 +14,10 @@ public class VitalSignRepository : IVitalSignRepository
         _context = context;
     }
     
-    public async Task<VitalSign> CreateVitalSign(VitalSign vitalSign)
+    public async Task<bool> CreateVitalSign(VitalSign vitalSign)
     {
         _context.VitalSigns.Add(vitalSign);
-        await _context.SaveChangesAsync();
-        return vitalSign;
+        return await _context.SaveChangesAsync() > 0;
     }
 
     public async Task<VitalSign> GetVitalSign(Guid id)
@@ -31,16 +30,15 @@ public class VitalSignRepository : IVitalSignRepository
         return await _context.VitalSigns.ToListAsync();
     }
 
-    public async Task<int> RemoveVitalSign(VitalSign vitalSign)
+    public async Task<bool> RemoveVitalSign(VitalSign vitalSign)
     {
         _context.VitalSigns.Remove(vitalSign);
-        return await _context.SaveChangesAsync();
+        return await _context.SaveChangesAsync() > 0;
     }
 
-    public async Task<VitalSign> UpdateVitalSign(VitalSign vitalSign)
+    public async Task<bool> UpdateVitalSign(VitalSign vitalSign)
     {
         _context.VitalSigns.Update(vitalSign);
-        await _context.SaveChangesAsync();
-        return vitalSign;
+        return await _context.SaveChangesAsync() > 0;
     }
 }

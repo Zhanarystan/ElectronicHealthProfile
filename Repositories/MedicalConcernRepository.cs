@@ -12,11 +12,10 @@ public class MedicalConcernRepository : IMedicalConcernRepository
     {
         _context = context;
     }
-    public async Task<MedicalConcern> CreateMedicalConcern(MedicalConcern medicalConcern)
+    public async Task<bool> CreateMedicalConcern(MedicalConcern medicalConcern)
     {
         _context.MedicalConcerns.Add(medicalConcern);
-        await _context.SaveChangesAsync();
-        return medicalConcern;
+        return await _context.SaveChangesAsync() > 0;
     }
 
     public async Task<MedicalConcern> GetMedicalConcern(Guid id)
@@ -29,17 +28,16 @@ public class MedicalConcernRepository : IMedicalConcernRepository
         return await _context.MedicalConcerns.ToListAsync();
     }
 
-    public async Task<int> RemoveMedicalConcern(MedicalConcern medicalConcern)
+    public async Task<bool> RemoveMedicalConcern(MedicalConcern medicalConcern)
     {
         _context.MedicalConcerns.Remove(medicalConcern);
-        return await _context.SaveChangesAsync();
+        return await _context.SaveChangesAsync() > 0;
     }
 
-    public async Task<MedicalConcern> UpdateMedicalConcern(MedicalConcern medicalConcern)
+    public async Task<bool> UpdateMedicalConcern(MedicalConcern medicalConcern)
     {
         _context.MedicalConcerns.Update(medicalConcern);
-        await _context.SaveChangesAsync();
-        return medicalConcern;
+        return await _context.SaveChangesAsync() > 0;
     }
 
 }

@@ -12,11 +12,10 @@ public class MetricRepository : IMetricRepository
         _context = context;
     }
 
-    public async Task<Metric> CreateMetric(Metric metric)
+    public async Task<bool> CreateMetric(Metric metric)
     {
         _context.Metrics.Add(metric);
-        await _context.SaveChangesAsync();
-        return metric;
+        return await _context.SaveChangesAsync() > 0;
     }
 
     public async Task<Metric> GetMetric(Guid id)
@@ -29,16 +28,15 @@ public class MetricRepository : IMetricRepository
         return await _context.Metrics.ToListAsync();
     }
 
-    public async Task<int> RemoveMetric(Metric metric)
+    public async Task<bool> RemoveMetric(Metric metric)
     {
         _context.Metrics.Remove(metric);
-        return await _context.SaveChangesAsync();
+        return await _context.SaveChangesAsync() > 0;
     }
 
-    public async Task<Metric> UpdateMetric(Metric metric)
+    public async Task<bool> UpdateMetric(Metric metric)
     {
         _context.Metrics.Update(metric);
-        await _context.SaveChangesAsync();
-        return metric;
+        return await _context.SaveChangesAsync() > 0;
     }
 }

@@ -288,3 +288,4 @@ C:\Users\mukht\source\repos\ElectronicHealthProfile\obj\Debug\net8.0\refint\Elec
 C:\Users\mukht\source\repos\ElectronicHealthProfile\obj\Debug\net8.0\ElectronicHealthProfile.pdb
 C:\Users\mukht\source\repos\ElectronicHealthProfile\obj\Debug\net8.0\ElectronicHealthProfile.genruntimeconfig.cache
 C:\Users\mukht\source\repos\ElectronicHealthProfile\obj\Debug\net8.0\ref\ElectronicHealthProfile.dll
+C:\Users\mukht\source\repos\ElectronicHealthProfile\obj\Debug\net8.0\ElectronicHealthProfile.sourcelink.json

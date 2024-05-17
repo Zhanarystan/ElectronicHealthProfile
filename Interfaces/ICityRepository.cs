@@ -6,7 +6,7 @@ public interface ICityRepository
 {
     Task<City> GetCity(Guid id);
     Task<IEnumerable<City>> ListCity();
-    Task<City> CreateCity(City city);
-    Task<City> UpdateCity(City city);
-    Task<int> RemoveCity(City city);
+    Task<bool> CreateCity(City city);
+    Task<bool> UpdateCity(City city);
+    Task<bool> RemoveCity(City city);
 }

@@ -5,7 +5,7 @@ public interface IMetricRepository
 {
     Task<Metric> GetMetric(Guid id);
     Task<IEnumerable<Metric>> ListMetric();
-    Task<Metric> CreateMetric(Metric metric);
-    Task<Metric> UpdateMetric(Metric metric);
-    Task<int> RemoveMetric(Metric metric);
+    Task<bool> CreateMetric(Metric metric);
+    Task<bool> UpdateMetric(Metric metric);
+    Task<bool> RemoveMetric(Metric metric);
 }

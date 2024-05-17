@@ -6,7 +6,7 @@ public interface IMedicalConcernRepository
 {
     Task<MedicalConcern> GetMedicalConcern(Guid id);
     Task<IEnumerable<MedicalConcern>> ListMedicalConcern();
-    Task<MedicalConcern> CreateMedicalConcern(MedicalConcern medicalConcern);
-    Task<MedicalConcern> UpdateMedicalConcern(MedicalConcern medicalConcern);
-    Task<int> RemoveMedicalConcern(MedicalConcern medicalConcern);
+    Task<bool> CreateMedicalConcern(MedicalConcern medicalConcern);
+    Task<bool> UpdateMedicalConcern(MedicalConcern medicalConcern);
+    Task<bool> RemoveMedicalConcern(MedicalConcern medicalConcern);
 }

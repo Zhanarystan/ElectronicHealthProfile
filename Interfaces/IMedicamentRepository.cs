@@ -6,7 +6,7 @@ public interface IMedicamentRepository
 {
     Task<Medicament> GetMedicament(Guid id);
     Task<IEnumerable<Medicament>> ListMedicament();
-    Task<Medicament> CreateMedicament(Medicament medicament);
-    Task<Medicament> UpdateMedicament(Medicament medicament);
-    Task<int> RemoveMedicament(Medicament medicament);
+    Task<bool> CreateMedicament(Medicament medicament);
+    Task<bool> UpdateMedicament(Medicament medicament);
+    Task<bool> RemoveMedicament(Medicament medicament);
 }

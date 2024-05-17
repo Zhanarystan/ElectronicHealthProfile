@@ -15,12 +15,6 @@ public class RoleSeed
 
         if (await roleManager.FindByNameAsync("system_admin") == null)
             await roleManager.CreateAsync(new IdentityRole("system_admin"));
-        if (await roleManager.FindByNameAsync("institution_admin") == null)
-            await roleManager.CreateAsync(new IdentityRole("institution_admin"));
-        if (await roleManager.FindByNameAsync("medical_staff") == null)
-            await roleManager.CreateAsync(new IdentityRole("medical_staff"));
-        if (await roleManager.FindByNameAsync("student") == null)
-            await roleManager.CreateAsync(new IdentityRole("student"));
 
         if (await userManager.FindByEmailAsync(adminEmail) == null)
         {

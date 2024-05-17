@@ -6,7 +6,7 @@ public interface IAnalysisRepository
 {
     Task<Analysis> GetAnalysis(Guid id);
     Task<IEnumerable<Analysis>> ListAnalysis();
-    Task<Analysis> CreateAnalysis(Analysis analysis);
-    Task<Analysis> UpdateAnalysis(Analysis analysis);
+    Task<bool> CreateAnalysis(Analysis analysis);
+    Task<bool> UpdateAnalysis(Analysis analysis);
     Task<int> RemoveAnalysis(Analysis analysis);
 }

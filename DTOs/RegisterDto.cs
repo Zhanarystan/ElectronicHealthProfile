@@ -1,22 +1,23 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using ElectronicHealthProfile.Entities;
 
 namespace ElectronicHealthProfile.DTOs;
 
 public class RegisterDto
 {   
-    [Required]
     [EmailAddress]
     public string Email { get; set; }
-    [Required]
     public string Password { get; set; }
-    [Required]
     public string Username { get; set; }
     public string FirstName { get; set; }
     public string SecondName { get; set; }
-
-    [Required]
+    public string MiddleName { get; set; }
+    public string IIN { get; set; }
+    public DateTime? BirthDate { get; set; }
+    public Gender? Gender { get; set; } 
+    public Guid? CityId { get; set; }
+    public string? Address { get; set; }
+    public UserType? UserType { get; set; }    
     public Guid? InstitutionId { get; set; }
-    public DateTime BirthDate { get; set; }
-    public IList<string> Roles { get; set; }
 }

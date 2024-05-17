@@ -16,11 +16,10 @@ public class CityRepository : ICityRepository
         _context = context;
     }
     
-    public async Task<City> CreateCity(City city)
+    public async Task<bool> CreateCity(City city)
     {
         _context.Cities.Add(city);
-        await _context.SaveChangesAsync();
-        return city;
+        return await _context.SaveChangesAsync() > 0;
     }
 
     public async Task<City> GetCity(Guid id)
@@ -33,16 +32,15 @@ public class CityRepository : ICityRepository
         return await _context.Cities.ToListAsync();
     }
 
-    public async Task<int> RemoveCity(City city)
+    public async Task<bool> RemoveCity(City city)
     {
         _context.Cities.Remove(city);
-        return await _context.SaveChangesAsync();
+        return await _context.SaveChangesAsync() > 0;
     }
 
-    public async Task<City> UpdateCity(City city)
+    public async Task<bool> UpdateCity(City city)
     {
         _context.Cities.Update(city);
-        await _context.SaveChangesAsync();
-        return city;
+        return await _context.SaveChangesAsync() > 0;
     }
 }

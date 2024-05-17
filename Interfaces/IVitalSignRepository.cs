@@ -6,7 +6,7 @@ public interface IVitalSignRepository
 {
     Task<VitalSign> GetVitalSign(Guid id);
     Task<IEnumerable<VitalSign>> ListVitalSign();
-    Task<VitalSign> CreateVitalSign(VitalSign vitalSign);
-    Task<VitalSign> UpdateVitalSign(VitalSign metric);
-    Task<int> RemoveVitalSign(VitalSign metric);
+    Task<bool> CreateVitalSign(VitalSign vitalSign);
+    Task<bool> UpdateVitalSign(VitalSign metric);
+    Task<bool> RemoveVitalSign(VitalSign metric);
 }

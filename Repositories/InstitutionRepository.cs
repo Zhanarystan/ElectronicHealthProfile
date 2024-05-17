@@ -14,11 +14,10 @@ public class InstitutionRepository : IInstitutionRepository
         _context = context;
     }
 
-    public async Task<Institution> CreateInstitution(Institution institution)
+    public async Task<bool> CreateInstitution(Institution institution)
     {
         _context.Institutions.Add(institution);
-        await _context.SaveChangesAsync();
-        return institution;
+        return await _context.SaveChangesAsync() > 0;
     }
 
     public async Task<Institution> GetInstitution(Guid id)
@@ -37,10 +36,9 @@ public class InstitutionRepository : IInstitutionRepository
         return await _context.SaveChangesAsync();
     }
 
-    public async Task<Institution> UpdateInstitution(Institution institution)
+    public async Task<bool> UpdateInstitution(Institution institution)
     {
         _context.Institutions.Update(institution);
-        await _context.SaveChangesAsync();
-        return institution;
+        return await _context.SaveChangesAsync() > 0;
     }
 }

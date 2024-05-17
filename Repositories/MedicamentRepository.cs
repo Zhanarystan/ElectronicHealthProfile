@@ -14,11 +14,10 @@ public class MedicamentRepository : IMedicamentRepository
         _context = context;
     }
     
-    public async Task<Medicament> CreateMedicament(Medicament medicament)
+    public async Task<bool> CreateMedicament(Medicament medicament)
     {
         _context.Medicaments.Add(medicament);
-        await _context.SaveChangesAsync();
-        return medicament;
+        return await _context.SaveChangesAsync() > 0;
     }
 
     public async Task<Medicament> GetMedicament(Guid id)
@@ -31,17 +30,16 @@ public class MedicamentRepository : IMedicamentRepository
         return await _context.Medicaments.ToListAsync();
     }
 
-    public async Task<int> RemoveMedicament(Medicament medicament)
+    public async Task<bool> RemoveMedicament(Medicament medicament)
     {
         _context.Medicaments.Remove(medicament);
-        return await _context.SaveChangesAsync();
+        return await _context.SaveChangesAsync() > 0;
     }
 
-    public async Task<Medicament> UpdateMedicament(Medicament medicament)
+    public async Task<bool> UpdateMedicament(Medicament medicament)
     {
         _context.Medicaments.Update(medicament);
-        await _context.SaveChangesAsync();
-        return medicament;
+        return await _context.SaveChangesAsync() > 0;
     }
 
 }

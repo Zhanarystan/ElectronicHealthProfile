@@ -15,11 +15,10 @@ public class LabResultRepository : ILabResultRepository
         _context = context;
     }
 
-    public async Task<LabResult> CreateLabResult(LabResult labResult)
+    public async Task<bool> CreateLabResult(LabResult labResult)
     {
         _context.LabResults.Add(labResult);
-        await _context.SaveChangesAsync();
-        return labResult;
+        return await _context.SaveChangesAsync() > 0;
     }
 
     public async Task<LabResult> GetLabResult(Guid id)
@@ -32,17 +31,16 @@ public class LabResultRepository : ILabResultRepository
         return await _context.LabResults.ToListAsync();
     }
 
-    public async Task<int> RemoveLabResult(LabResult labResult)
+    public async Task<bool> RemoveLabResult(LabResult labResult)
     {
         _context.LabResults.Remove(labResult);
-        return await _context.SaveChangesAsync();
+        return await _context.SaveChangesAsync() > 0;
     }
 
-    public async Task<LabResult> UpdateLabResult(LabResult labResult)
+    public async Task<bool> UpdateLabResult(LabResult labResult)
     {
         _context.LabResults.Update(labResult);
-        await _context.SaveChangesAsync();
-        return labResult;
+        return await _context.SaveChangesAsync() > 0;
     }
 
 }

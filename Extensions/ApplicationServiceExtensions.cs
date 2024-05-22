@@ -1,6 +1,5 @@
 using ElectronicHealthProfile.Interfaces;
 using ElectronicHealthProfile.Persistence;
-using ElectronicHealthProfile.Repositories;
 using ElectronicHealthProfile.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -37,17 +36,17 @@ public static class ApplicationServiceExtensions
         //Repository register
         services.AddScoped<IUserAccessor, UserAccessor>();
         // services.AddScoped<IPhotoAccessor, PhotoAccessor>();
-        services.AddScoped<IAnalysisRepository, AnalysisRepository>();
-        services.AddScoped<ICityRepository, CityRepository>();
-        services.AddScoped<IConsultationRepository, ConsultationRepository>();
-        services.AddScoped<IUserRepository, UserRepository>();
-        services.AddScoped<IInstitutionRepository, InstitutionRepository>();
-        services.AddScoped<IAnalysisRepository, AnalysisRepository>();
-        services.AddScoped<ILabResultRepository, LabResultRepository>();
-        services.AddScoped<IMedicalConcernRepository, MedicalConcernRepository>();
-        services.AddScoped<IMedicamentRepository, MedicamentRepository>();
-        services.AddScoped<IVitalSignRepository, VitalSignRepository>();
-        services.AddScoped<IMetricRepository, MetricRepository>();
+        // services.AddScoped<IAnalysisRepository, AnalysisRepository>();
+        // services.AddScoped<ICityRepository, CityRepository>();
+        // services.AddScoped<IConsultationRepository, ConsultationRepository>();
+        // services.AddScoped<IUserRepository, UserRepository>();
+        // services.AddScoped<IInstitutionRepository, InstitutionRepository>();
+        // services.AddScoped<IAnalysisRepository, AnalysisRepository>();
+        // services.AddScoped<ILabResultRepository, LabResultRepository>();
+        // services.AddScoped<IMedicalConcernRepository, MedicalConcernRepository>();
+        // services.AddScoped<IMedicamentRepository, MedicamentRepository>();
+        // services.AddScoped<IVitalSignRepository, VitalSignRepository>();
+        // services.AddScoped<IMetricRepository, MetricRepository>();
 
         //Service register
         // services.AddScoped<IConsultationService, ConsultationService>();

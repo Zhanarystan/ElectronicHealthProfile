@@ -18,6 +18,6 @@ public class RegisterDto
     public Gender? Gender { get; set; } 
     public Guid? CityId { get; set; }
     public string? Address { get; set; }
-    public UserType? UserType { get; set; }    
+    public Guid? PositionId { get; set; }    
     public Guid? InstitutionId { get; set; }
 }

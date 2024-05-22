@@ -20,6 +20,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -32,6 +33,10 @@ if (app.Environment.IsDevelopment())
 app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
+
+app.UseRouting();
+
+app.UseCors("CorsPolicy");
 
 app.UseAuthentication();
 
@@ -49,8 +54,9 @@ try
     var userManager = services.GetRequiredService<UserManager<AppUser>>();
     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
     await context.Database.MigrateAsync();
-    await RoleSeed.SeedData(userManager, roleManager);
-    await Seed.SeedData(context, userManager);
+    // await RoleSeed.SeedData(userManager, roleManager);
+    await Seed.SeedUsers(context, userManager, roleManager);
+    await Seed.SeedData(context);
 } 
 catch (Exception ex)
 {

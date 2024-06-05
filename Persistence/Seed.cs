@@ -364,6 +364,7 @@ public class Seed
             {
                 new Appointment
                 {
+                    Title = "Прием врача",
                     Notes = Constants.ConstantValues.AppointmentGrippeNote,
                     MedicalStaffId = context.Users.First(u => u.UserName == "medstaff3").Id,
                     StudentId = context.Users.First(u => u.UserName == "sultanova_akerke").Id,
@@ -371,6 +372,7 @@ public class Seed
                 },
                 new Appointment
                 {
+                    Title = "Прием врача 17.05",
                     Notes = Constants.ConstantValues.AppointmentHighTemperatureNote,
                     MedicalStaffId = context.Users.First(u => u.UserName == "medstaff3").Id,
                     StudentId = context.Users.First(u => u.UserName == "sultanova_akerke").Id,
@@ -381,6 +383,139 @@ public class Seed
             context.Appointments.AddRange(appointments);
             context.SaveChanges();
             appointments = context.Appointments.ToList();
+
+            var analysis = new List<Analysis>
+            {
+                new Analysis
+                {
+                    Name = "Гемоглобин (Мужчины)",
+                    NormValue = "130-170",
+                    Unit = "г/л"
+                },
+                new Analysis
+                {
+                    Name = "Гемоглобин (Женщины)",
+                    NormValue = "120-150",
+                    Unit = "г/л"
+                },
+                new Analysis
+                {
+                    Name = "Эритроциты (Мужчины)",
+                    NormValue = "4.5-5.5",
+                    Unit = "x 10^12/л"
+                },
+                new Analysis
+                {
+                    Name = "Эритроциты (Женщины)",
+                    NormValue = "3.8-4.8",
+                    Unit = "x 10^12/л"
+                },
+                new Analysis
+                {
+                    Name = "Глюкоза",
+                    NormValue = "3.3-5.5",
+                    Unit = "ммоль/л"
+                },
+                new Analysis
+                {
+                    Name = "Общий белок",
+                    NormValue = "60-85",
+                    Unit = "г/л"
+                },
+                new Analysis
+                {
+                    Name = "Холестерин",
+                    NormValue = "3.6-7.8",
+                    Unit = "ммоль/л"
+                },
+            };
+
+            context.Analysis.AddRange(analysis);
+            context.SaveChanges();
+            analysis = context.Analysis.ToList();
+
+            var labResultSets = new List<LabResultSet>
+            {
+                new LabResultSet
+                {
+                    Name = "Общий анализ крови (ОАК)",
+                    CreatedAt = new DateTime(2024, 1, 20),
+                    StudentId = context.Users.First(u => u.UserName == "sultanova_akerke").Id
+                },
+                new LabResultSet
+                {
+                    Name = "Биохимический анализ крови",
+                    CreatedAt = new DateTime(2024, 5, 17),
+                    StudentId = context.Users.First(u => u.UserName == "sultanova_akerke").Id
+                }
+            };
+
+            context.LabResultSets.AddRange(labResultSets);
+            context.SaveChanges();
+            labResultSets = context.LabResultSets.ToList();
+
+            var labResults = new List<LabResult>
+            {
+                new LabResult
+                {
+                    Value = "130",
+                    CreatedAt = new DateTime(2024, 1, 20),
+                    AnalysisId = analysis[1].Id,
+                    LabResultSetId = labResultSets[0].Id
+                },
+                new LabResult
+                {
+                    Value = "4.2",
+                    CreatedAt = new DateTime(2024, 1, 20),
+                    AnalysisId = analysis[3].Id,
+                    LabResultSetId = labResultSets[0].Id
+                },
+                new LabResult
+                {
+                    Value = "120",
+                    CreatedAt = new DateTime(2024, 5, 17),
+                    AnalysisId = analysis[1].Id,
+                    LabResultSetId = labResultSets[1].Id
+                },
+                new LabResult
+                {
+                    Value = "3.8",
+                    CreatedAt = new DateTime(2024, 5, 17),
+                    AnalysisId = analysis[3].Id,
+                    LabResultSetId = labResultSets[1].Id
+                },
+                new LabResult
+                {
+                    Value = "73",
+                    CreatedAt = new DateTime(2024, 5, 17),
+                    AnalysisId = analysis[5].Id,
+                    LabResultSetId = labResultSets[1].Id
+                },
+                new LabResult
+                {
+                    Value = "5",
+                    CreatedAt = new DateTime(2024, 5, 17),
+                    AnalysisId = analysis[6].Id,
+                    LabResultSetId = labResultSets[1].Id
+                },
+            };
+            context.LabResults.AddRange(labResults);
+            context.SaveChanges();
+            labResults = context.LabResults.ToList();
+
+            var medicalData = new List<MedicalData>
+            {
+                new MedicalData
+                {
+                    StudentId = context.Users.First(u => u.UserName == "sultanova_akerke").Id,
+                    Weight = 55,
+                    Height = 161,
+                    BloodType = "3"
+                }
+            };
+            context.MedicalData.AddRange(medicalData);
+            context.SaveChanges();
+            medicalData = context.MedicalData.ToList();
         }
     }
 }

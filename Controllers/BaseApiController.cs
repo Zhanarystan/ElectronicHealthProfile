@@ -1,10 +1,6 @@
 using ElectronicHealthProfile.Core;
 using Microsoft.AspNetCore.Mvc;
-
-
 namespace ElectronicHealthProfile.Controllers;
-
-    
 [ApiController]
 [Route("api/[controller]")]
 public class BaseApiController : ControllerBase
@@ -16,7 +12,6 @@ public class BaseApiController : ControllerBase
             return Ok(result.Value);
         if(result.IsSuccess && result.Value == null)
             return NotFound();
-        
         return BadRequest(result);
     }
 }

@@ -1,12 +1,13 @@
+namespace ElectronicHealthProfile.DTOs;
 
-namespace ElectronicHealthProfile.Entities;
-
-public class Appointment
+public class AppointmentDto
 {
     public Guid Id { get; set; }
     public string Title { get; set; }
     public string Notes { get; set; }
-    public string MedicalStaffId { get; set; }
-    public string StudentId { get; set; }  
+
+    public UserDto MedicalStaff { get; set; }
+
+    public UserDto Student  { get; set; }
     public DateTime ConductedDate { get; set; }
 }

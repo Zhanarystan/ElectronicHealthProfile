@@ -1,7 +1,6 @@
 using System.Net;
 using System.Text.Json;
 using ElectronicHealthProfile.Core;
-
 namespace ElectronicHealthProfile.Middleware;
 public class ExceptionMiddleware
 {
@@ -16,7 +15,6 @@ public class ExceptionMiddleware
         _next = next;
 
     }
-
     public async Task InvokeAsync(HttpContext context)
     {
         try

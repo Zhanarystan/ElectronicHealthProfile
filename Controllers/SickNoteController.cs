@@ -6,21 +6,16 @@ using ElectronicHealthProfile.Persistence;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
 namespace ElectronicHealthProfile.Controllers;
-
-    
 [ApiController]
 [Route("api/sick-note")]
 public class SickNoteController : BaseApiController
 {
     private readonly DataContext _context;
-
     public SickNoteController(DataContext context)
     {
         _context = context;
     }
-
     [HttpPost]
     public async Task<ActionResult<SickNote>> Create(SickNoteCreateDto dto) 
     {
@@ -28,21 +23,18 @@ public class SickNoteController : BaseApiController
         {
             NoteNumber = dto.NoteNumber,
             NoteTitle = ConstantValues.SickNoteTitle,
-            IssueDate = dto.IssueDate,
+            IssueDate = DateTime.Now,
             StudentId = dto.StudentId,
             AbsenceReason = dto.AbsenceReason,
             AbsenceStartDate = dto.AbsenceStartDate,
             AbsenceEndDate = dto.AbsenceEndDate
         };
-
         _context.SickNotes.Add(sickNote);
         var saveFactor = await _context.SaveChangesAsync();
-
         if (saveFactor <= 0) 
             return HandleResult(Result<SickNote>.Failure(new List<string>() {  $"SickNote не создано!" }));
         return HandleResult(Result<SickNote>.Success(sickNote));
     }
-
     [Authorize]
     [HttpGet("{id}")]
     public async Task<ActionResult<SickNote>> Get(Guid id)
@@ -52,7 +44,6 @@ public class SickNoteController : BaseApiController
         var medicalStaff = await _context.Users.FindAsync(sickNote.MedicalStaffId);
         var studentDto = CreateUserDto(student);
         var medicalStaffDto = CreateUserDto(medicalStaff);
-
         var sickNoteDto = new SickNoteItemDto
         {
             Id = sickNote.Id,
@@ -61,14 +52,40 @@ public class SickNoteController : BaseApiController
             IssueDate = sickNote.IssueDate,
             Student = studentDto,
             MedicalStaff = medicalStaffDto,
-            AbsenceReason = sickNote.AbsenceReason, // этот текст должно браться из Diagnosis
+            AbsenceReason = sickNote.AbsenceReason,
             AbsenceStartDate = sickNote.AbsenceStartDate,
             AbsenceEndDate = sickNote.AbsenceEndDate
         };
-
         return HandleResult(Result<SickNoteItemDto>.Success(sickNoteDto));
     }
 
+    [Authorize]
+    [HttpGet("student/{studentId}")]
+    public async Task<IActionResult> ListForStudent(string studentId)
+    {
+        var student = await _context.Users.FindAsync(studentId);
+        var sickNotes = await _context
+                                .SickNotes
+                                .Where(sn => sn.StudentId == studentId)
+                                .OrderByDescending(sn => sn.IssueDate)
+                                .ToListAsync();
+        var studentInfoDto = CreateUserDto(student);
+        var sickNoteDtoList = sickNotes
+                                .Select(sn => 
+                                    new SickNoteItemDto
+                                    {
+                                        Id = sn.Id,
+                                        NoteNumber = sn.NoteNumber,
+                                        IssueDate = sn.IssueDate,
+                                        Student = studentInfoDto,
+                                        MedicalStaff = CreateUserDto(_context.Users.Find(sn.MedicalStaffId)),
+                                        AbsenceReason = sn.AbsenceReason, 
+                                        AbsenceStartDate = sn.AbsenceStartDate,
+                                        AbsenceEndDate = sn.AbsenceEndDate
+                                    })
+                                .ToList();
+        return HandleResult(Result<IEnumerable<SickNoteItemDto>>.Success(sickNoteDtoList));
+    }
     private UserDto CreateUserDto(AppUser user) 
     {
         var position = _context.Positions.Find(user.PositionId);

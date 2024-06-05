@@ -4,23 +4,17 @@ using ElectronicHealthProfile.Entities;
 using ElectronicHealthProfile.Persistence;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
 namespace ElectronicHealthProfile.Controllers;
-
 public class InstitutionController : BaseApiController
 {
     private readonly DataContext _context;
-
     public InstitutionController(DataContext context)
     {
         _context = context;    
     }
-
-    
     [HttpGet]
     public async Task<IActionResult> List([FromQuery]string type)
     {
-        
         var institutions = await _context.Institutions.Where(i => i.InstitutionType == GetInstitutionType(type)).ToListAsync();
         var institutionListDto = institutions
                                     .Select(i => 
@@ -33,10 +27,8 @@ public class InstitutionController : BaseApiController
                                             InstitutionSubType = GetInstitutionSubTypeString(i.InstitutionSubType),
                                             City = _context.Cities.Find(i.CityId)
                                         });
-
         return HandleResult(Result<IEnumerable<InstitutionItemDto>>.Success(institutionListDto));
     }
-
     [HttpGet("{institutionId}/students")]
     public async Task<IActionResult> ListStudents(Guid institutionId)
     {
@@ -44,19 +36,14 @@ public class InstitutionController : BaseApiController
                                 .Positions
                                 .Where(p => p.CodeName == "STUDENT" || p.CodeName == "SCHOOL_STUDENT")
                                 .ToListAsync();
-
         var users = await _context
                             .Users
                             .Where(u => u.InstitutionId == institutionId)
                             .ToListAsync();
-
         var filteredUser = users.Where(u => positions.Exists(p => p.Id == u.PositionId)).ToList();
-
         var students = filteredUser.Select(CreateUserObject).ToList();
-
         return HandleResult(Result<IEnumerable<UserDto>>.Success(students));
     }
-
     private UserDto CreateUserObject(AppUser user)
     {
         var position = _context.Positions.Find(user.PositionId);
@@ -81,7 +68,6 @@ public class InstitutionController : BaseApiController
             Roles = new List<string>()
         };
     }
-
     private static InstitutionType GetInstitutionType(string type) 
     {
         switch (type)
@@ -94,7 +80,6 @@ public class InstitutionController : BaseApiController
                 return InstitutionType.Undefined;
         }
     }
-
     public static string GetInstitutionTypeString(InstitutionType type) 
     {
         switch (type)
@@ -107,7 +92,6 @@ public class InstitutionController : BaseApiController
                 return "Неизвестно";
         }
     }
-
     public static string GetInstitutionSubTypeString(InstitutionSubType type) 
     {
         switch (type)

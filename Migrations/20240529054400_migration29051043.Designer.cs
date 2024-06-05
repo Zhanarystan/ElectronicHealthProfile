@@ -4,6 +4,7 @@ using ElectronicHealthProfile.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElectronicHealthProfile.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240529054400_migration29051043")]
+    partial class migration29051043
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -187,27 +190,6 @@ namespace ElectronicHealthProfile.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Cities");
-                });
-
-            modelBuilder.Entity("ElectronicHealthProfile.Entities.DailySteps", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Steps")
-                        .HasColumnType("int");
-
-                    b.Property<string>("StudentId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DailySteps");
                 });
 
             modelBuilder.Entity("ElectronicHealthProfile.Entities.Institution", b =>
